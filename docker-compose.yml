@@ -1,0 +1,41 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Passed to Vite at build time for $env/static/public
+        PUBLIC_DIRECTUS_URL: ${PUBLIC_DIRECTUS_URL:-https://cms.progetta.ch}
+    container_name: frontend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Required by adapter-node for CSRF & absolute URL generation
+      - ORIGIN=${ORIGIN:-https://www.matteosnozzi.ch}
+      - PUBLIC_DIRECTUS_URL=${PUBLIC_DIRECTUS_URL:-https://cms.progetta.ch}
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+
+      # ── HTTP routers — redirect to HTTPS ─────────────────────────────────
+      - "traefik.http.routers.frontend-http.rule=Host(`www.matteosnozzi.ch`) || Host(`matteosnozzi.ch`)"
+      - "traefik.http.routers.frontend-http.entrypoints=web"
+      - "traefik.http.routers.frontend-http.middlewares=redirect-to-https"
+
+      # ── Non-www → www redirect middleware ────────────────────────────────
+      - "traefik.http.middlewares.www-redirect.redirectregex.regex=^https://matteosnozzi\\.ch/(.*)"
+      - "traefik.http.middlewares.www-redirect.redirectregex.replacement=https://www.matteosnozzi.ch/$${1}"
+      - "traefik.http.middlewares.www-redirect.redirectregex.permanent=true"
+
+      # ── HTTPS router (main) ───────────────────────────────────────────────
+      - "traefik.http.routers.frontend.rule=Host(`www.matteosnozzi.ch`) || Host(`matteosnozzi.ch`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.frontend.middlewares=www-redirect,security-headers"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+
+networks:
+  web:
+    external: true

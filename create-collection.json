@@ -1,0 +1,86 @@
+{
+  "collection": "projects",
+  "meta": {
+    "icon": "folder_open",
+    "sort_field": "sort"
+  },
+  "schema": {},
+  "fields": [
+    {
+      "field": "id",
+      "type": "integer",
+      "schema": { "is_primary_key": true, "has_auto_increment": true },
+      "meta": { "hidden": true, "readonly": true, "interface": "input" }
+    },
+    {
+      "field": "sort",
+      "type": "integer",
+      "schema": {},
+      "meta": { "hidden": true, "interface": "input" }
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "schema": { "default_value": "published", "is_nullable": false },
+      "meta": {
+        "interface": "select-dropdown",
+        "options": {
+          "choices": [
+            {"text": "Published", "value": "published"},
+            {"text": "Draft", "value": "draft"},
+            {"text": "Archived", "value": "archived"}
+          ]
+        },
+        "width": "full"
+      }
+    },
+    {
+      "field": "name",
+      "type": "string",
+      "schema": {},
+      "meta": { "interface": "input", "width": "full", "required": true }
+    },
+    {
+      "field": "type",
+      "type": "string",
+      "schema": {},
+      "meta": {
+        "interface": "select-dropdown",
+        "options": {
+          "choices": [
+            {"text": "Film", "value": "FILM"},
+            {"text": "Review", "value": "REVIEW"},
+            {"text": "Publication", "value": "PUB."},
+            {"text": "Strategy", "value": "STRAT."},
+            {"text": "Lecture", "value": "LEC."}
+          ]
+        },
+        "width": "half"
+      }
+    },
+    {
+      "field": "code",
+      "type": "string",
+      "schema": {},
+      "meta": { "interface": "input", "width": "half" }
+    },
+    {
+      "field": "version",
+      "type": "string",
+      "schema": {},
+      "meta": { "interface": "input", "width": "half" }
+    },
+    {
+      "field": "year",
+      "type": "integer",
+      "schema": {},
+      "meta": { "interface": "input", "width": "half" }
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "schema": {},
+      "meta": { "interface": "input-rich-text-html", "width": "full" }
+    }
+  ]
+}

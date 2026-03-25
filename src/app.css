@@ -1,0 +1,56 @@
+/* ── Inter — self-hosted via @fontsource/inter ── */
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/700.css';
+
+:root {
+	--color-bg: #ffffff;
+	--color-text: #000000;
+	--color-accent: #7c201e;
+	--color-border: #000000;
+	--color-muted: #666666;
+	--color-image-border: #7c201e;
+	--color-image-bg: #d8d8d8;
+	--color-image-dot: #aaaaaa;
+
+	--font-title: 'Inter', Helvetica, Arial, sans-serif;
+	--font-body:  'Inter', Helvetica, Arial, sans-serif;
+	--font-mono: 'Inter', Helvetica, Arial, sans-serif;
+	--font-size-base: 11px;
+	--font-size-sm: 9px;
+
+	--sidebar-width: 430px;
+	--gap-sm: 4px;
+	--gap-md: 12px;
+	--gap-lg: 20px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-body);
+	font-size: var(--font-size-base);
+	line-height: 1.5;
+}
+
+a {
+	color: inherit;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid var(--color-border);
+	margin: 0;
+}
