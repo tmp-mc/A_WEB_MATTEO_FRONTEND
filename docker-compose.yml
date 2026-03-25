@@ -18,6 +18,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=web"
 
       # ── HTTP routers — redirect to HTTPS ─────────────────────────────────
       - "traefik.http.routers.frontend-http.rule=Host(`www.matteosnozzi.ch`) || Host(`matteosnozzi.ch`)"
