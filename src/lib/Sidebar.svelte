@@ -30,7 +30,7 @@
 </script>
 
 <div class="sidebar-inner">
-	<!-- Always-visible header: logo + mobile toggle -->
+	<!-- Always-visible header: logo + mobile toggle + mobile lang switcher -->
 	<div class="sidebar-header">
 		<a href="/" class="logo-link" aria-label="Matteo Snozzi Ingegnere">
 			<img src={logoSrc} alt="Matteo Snozzi Ingegnere" class="logo" width="80" height="80" />
@@ -44,6 +44,10 @@
 			>
 				{isOpen ? ui.close : ui.menu}
 			</button>
+			<!-- Language switcher visible only on mobile, outside hamburger -->
+			<div class="mobile-lang">
+				<LanguageSwitcher current={lang} />
+			</div>
 		</div>
 	</div>
 
@@ -76,7 +80,6 @@
 		<div class="works">
 			<div class="works-header">
 				<span>{ui.selectedWork}</span>
-				<span>{ui.type}</span>
 				<span>{ui.year}</span>
 			</div>
 
@@ -92,7 +95,6 @@
 						onclick={() => selectProject(project.id)}
 					>
 						<span class="w-name">{trans?.name ?? '—'}</span>
-						<span class="w-type">{project.type}</span>
 						<span class="w-year">{project.year}</span>
 					</a>
 				</div>
@@ -142,8 +144,12 @@
 		display: block;
 	}
 
-	/* Hide toggle on desktop */
+	/* Hide toggle and mobile lang on desktop */
 	.menu-toggle {
+		display: none;
+	}
+
+	.mobile-lang {
 		display: none;
 	}
 
@@ -186,7 +192,7 @@
 
 	.works-header {
 		display: grid;
-		grid-template-columns: 1fr 70px 38px;
+		grid-template-columns: 1fr 38px;
 		font-family: var(--font-title);
 		font-size: var(--font-size-base);
 		font-weight: 700;
@@ -213,17 +219,19 @@
 
 	.work-row {
 		display: grid;
-		grid-template-columns: 1fr 70px 38px;
+		grid-template-columns: 1fr 38px;
 		text-decoration: none;
 		padding: 1px 0 3px 0;
 		font-family: var(--font-body);
 		font-size: var(--font-size-base);
 		text-transform: uppercase;
 		cursor: pointer;
+		align-items: start;
 	}
 
 	.w-year {
 		text-align: right;
+		white-space: nowrap;
 	}
 
 	.work-row:hover .w-name {
@@ -279,6 +287,25 @@
 		.menu-toggle[aria-expanded='true'] {
 			background: var(--color-text);
 			color: var(--color-bg);
+		}
+
+		/* header-right becomes a column to stack menu toggle + lang switcher */
+		.header-right {
+			flex-direction: column;
+			align-items: flex-end;
+			justify-content: space-between;
+			align-self: stretch;
+			gap: 0;
+		}
+
+		/* Show language switcher in header on mobile */
+		.mobile-lang {
+			display: flex;
+		}
+
+		/* Hide the desktop language switcher that lives inside the collapsible body */
+		.footer-bottom {
+			display: none;
 		}
 
 		/* Collapsed by default on mobile */

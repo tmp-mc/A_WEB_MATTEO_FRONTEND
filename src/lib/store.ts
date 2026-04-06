@@ -16,8 +16,10 @@ export interface Project {
 	id: number;
 	sort: number | null;
 	status: string;
-	type: 'bando pubblico' | 'privato' | 'progetto' | string;
+	type: 'concorso' | 'progetto' | string;
 	year: number;
+	month: number | null;
+	place: string | null;
 	partners: string[] | null;
 	translations: ProjectTranslation[];
 	images: ProjectImage[];

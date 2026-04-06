@@ -14,11 +14,12 @@ export const load: LayoutServerLoad = async ({ params, fetch }) => {
 	const url = new URL(`${PUBLIC_DIRECTUS_URL}/items/projects`);
 	url.searchParams.set(
 		'fields',
-		'id,sort,type,year,partners,translations.name,translations.description,translations.languages_code,images.directus_files_id,images.sort'
+		'id,sort,type,year,month,place,partners,translations.name,translations.description,translations.languages_code,images.directus_files_id,images.sort'
 	);
 	url.searchParams.set('filter[status][_eq]', 'published');
 	url.searchParams.set('deep[translations][_filter][languages_code][_eq]', lang);
-	url.searchParams.set('sort', '-sort');
+	// Chronological order: most recent year first, then most recent month first
+	url.searchParams.set('sort', '-year,-month');
 
 	const res = await fetch(url.toString());
 
