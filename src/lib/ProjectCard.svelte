@@ -129,7 +129,7 @@
 <article id="{id}-project" class:active>
 	<div class="card-header">
 		<span class="card-name">{name}</span>
-		<span class="card-year">{year}{date ? ` — ${date}` : ''}</span>
+		<span class="card-year">{date ? `${date} — ` : ''}{year}</span>
 	</div>
 
 	<!-- Project location (place) shown below the title -->
@@ -190,13 +190,6 @@
 
 	{#if description}
 		<p class="description">{@html description}</p>
-	{/if}
-
-	{#if type}
-		<div class="partners">
-			<span class="partners-label">ID:</span>
-			<span class="partners-list">{type}{projectNumber !== undefined ? ` ${pad(projectNumber)}` : ''}</span>
-		</div>
 	{/if}
 
 	{#if partnersList.length > 0}
