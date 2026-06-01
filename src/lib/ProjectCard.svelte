@@ -334,6 +334,8 @@
 	.nav-btn {
 		background: none;
 		border: 1px solid var(--color-border);
+		/* Explicit color — iOS Safari renders unstyled <button> text in the system blue tint */
+		color: var(--color-text);
 		font-family: var(--font-mono);
 		font-size: var(--font-size-base);
 		cursor: pointer;

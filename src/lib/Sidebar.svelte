@@ -275,6 +275,8 @@
 			display: block;
 			background: none;
 			border: 1px solid var(--color-border);
+			/* Explicit color — iOS Safari renders unstyled <button> text in the system blue tint */
+			color: var(--color-text);
 			font-family: var(--font-body);
 			font-size: var(--font-size-base);
 			text-transform: uppercase;
