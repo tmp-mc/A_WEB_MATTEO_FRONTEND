@@ -340,11 +340,15 @@
 		padding: 2px 8px;
 		line-height: 1.5;
 		text-transform: uppercase;
+		-webkit-tap-highlight-color: transparent;
 	}
 
-	.nav-btn:hover {
-		background: var(--color-text);
-		color: var(--color-bg);
+	/* Only apply the fill on devices that truly hover, so it doesn't stick after a tap on mobile */
+	@media (hover: hover) {
+		.nav-btn:hover {
+			background: var(--color-text);
+			color: var(--color-bg);
+		}
 	}
 
 	.slide-counter {

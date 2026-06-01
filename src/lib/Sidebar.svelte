@@ -281,12 +281,20 @@
 			padding: 4px 8px;
 			cursor: pointer;
 			letter-spacing: 0.05em;
+			-webkit-tap-highlight-color: transparent;
 		}
 
-		.menu-toggle:hover,
+		/* Open-state indicator stays; hover fill only on real hover devices so it doesn't stick after a tap */
 		.menu-toggle[aria-expanded='true'] {
 			background: var(--color-text);
 			color: var(--color-bg);
+		}
+
+		@media (hover: hover) {
+			.menu-toggle:hover {
+				background: var(--color-text);
+				color: var(--color-bg);
+			}
 		}
 
 		/* header-right becomes a column to stack menu toggle + lang switcher */
