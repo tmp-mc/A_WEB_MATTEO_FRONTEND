@@ -290,6 +290,16 @@
 			color: var(--color-bg);
 		}
 
+		/* No default (blue) focus ring on tap; keep a visible ring for keyboard users */
+		.menu-toggle:focus {
+			outline: none;
+		}
+
+		.menu-toggle:focus-visible {
+			outline: 1px solid var(--color-border);
+			outline-offset: 1px;
+		}
+
 		@media (hover: hover) {
 			.menu-toggle:hover {
 				background: var(--color-text);

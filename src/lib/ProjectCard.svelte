@@ -343,6 +343,16 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
+	/* No default (blue) focus ring on tap/click; keep a visible ring for keyboard users */
+	.nav-btn:focus {
+		outline: none;
+	}
+
+	.nav-btn:focus-visible {
+		outline: 1px solid var(--color-border);
+		outline-offset: 1px;
+	}
+
 	/* Only apply the fill on devices that truly hover, so it doesn't stick after a tap on mobile */
 	@media (hover: hover) {
 		.nav-btn:hover {
